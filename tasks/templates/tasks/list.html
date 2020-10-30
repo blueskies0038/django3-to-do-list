@@ -1,4 +1,4 @@
-<h1>tasks</h1>
+<h1>To Do</h1>
 
 <form method="POST" action="/">
     {% csrf_token %}
@@ -9,6 +9,11 @@
 {% for task in tasks %}
     <div>
         <a href="{% url 'update' task.id %}">Update</a>
-        <p>{{task}}</p>
+        <a href="{% url 'delete' task.id %}">Delete</a>
+        {% if task.complete %}
+            <del>{{task}}</del>
+        {% else %}
+            <span>{{task}}</span>
+        {% endif %}
     </div>
 {% endfor %}
